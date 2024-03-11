@@ -27,7 +27,6 @@
     "incremental": true,
   },
   "include": [
-    "src",
-    "service"
+    "src"
   ]
 }
