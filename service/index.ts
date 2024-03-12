@@ -7,6 +7,7 @@ import * as dotenv from "dotenv";
 import * as dotenvExpand from "dotenv-expand";
 import { join, dirname } from "path";
 import { fileURLToPath } from 'url';
+import serverless from "serverless-http";
 
 dotenvExpand.expand(dotenv.config());
 
@@ -35,11 +36,8 @@ Store.open().then((store) => {
   // configure the router on the correct base path
   app.use(routerBasePath, router);
 
-  // make it work with netlify functions
-  if (isNetlify) {
-    const serverless = require("serverless-http");
-    exports.handler = serverless(app);
-  } else {
+  // if not in netlify, run the server
+  if (!isNetlify) {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
 
@@ -51,3 +49,6 @@ Store.open().then((store) => {
     });
   }
 });
+
+// make it work with netlify functions
+export const handler = serverless(app);
