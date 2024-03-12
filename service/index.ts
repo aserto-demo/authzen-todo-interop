@@ -6,10 +6,7 @@ import { checkJwt, authzMiddleware } from "./src/auth";
 import * as dotenv from "dotenv";
 import * as dotenvExpand from "dotenv-expand";
 import { join, dirname } from "path";
-
 import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 dotenvExpand.expand(dotenv.config());
 
@@ -43,6 +40,9 @@ Store.open().then((store) => {
     const serverless = require("serverless-http");
     exports.handler = serverless(app);
   } else {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+
     // main endpoint serves react bundle from /build
     app.use(express.static(join(__dirname, '..', 'build')));
 
