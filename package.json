@@ -43,7 +43,7 @@
     "react-query": "^3.39.3",
     "react-scripts": "^5.0.1",
     "react-toastify": "^8.2.0",
-    "serverless-http": "^3.2.0",
+    "serverless-http": "2.7.0",
     "sqlite": "^4.1.2",
     "sqlite3": "^5.0.8",
     "todomvc-app-css": "^2.4.3",
