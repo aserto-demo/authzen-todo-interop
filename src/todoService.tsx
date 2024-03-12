@@ -4,10 +4,14 @@ import { useQuery } from "react-query";
 
 const serviceContext = React.createContext({ token: "" });
 
+const apiUrl = process.env.REACT_APP_NETLIFY ?
+  `${window.location.origin}/.netlify/functions/index` :
+  process.env.REACT_APP_API_ORIGIN;
+
 const urls = {
-  todos: `${process.env.REACT_APP_API_ORIGIN}/todos`,
-  todo: (id: string) => `${process.env.REACT_APP_API_ORIGIN}/todos/${id}`,
-  user: (id: string) => `${process.env.REACT_APP_API_ORIGIN}/users/${id}`,
+  todos: `${apiUrl}/todos`,
+  todo: (id: string) => `${apiUrl}/todos/${id}`,
+  user: (id: string) => `${apiUrl}/users/${id}`,
 };
 
 export const useTodoService: () => ITodoService = () => {
