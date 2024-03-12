@@ -8,7 +8,7 @@
     "start": "npm-run-all --parallel spa api-server",
     "build": "REACT_APP_VERSION=$npm_package_version react-scripts build",
     "build-docker-bundle": "sh -ac '. ./.env.docker; REACT_APP_VERSION=$npm_package_version react-scripts build'",
-    "test": "react-scripts test",
+    "test": "./decision.sh",
     "eject": "react-scripts eject",
     "spa": "react-scripts start",
     "client-server": "node client-server.js",
